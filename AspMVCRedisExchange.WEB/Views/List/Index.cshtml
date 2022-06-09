@@ -8,7 +8,8 @@
 <button type="submit">Save</button>
 </form>
 
+
 @foreach (var item in Model)
 {
-    <h3>@item</h3>
+    <h3>@item <a asp-controller="List" asp-action="Delete" asp-route-book="@item">Delete</a></h3>
 }

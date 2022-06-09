@@ -32,7 +32,15 @@ namespace AspMVCRedisExchange.WEB.Controllers
         {
             _database.ListRightPush(ListKey, book);
 
-            return RedirectToAction("index");
+            return RedirectToAction("Index");
+        }
+
+
+        public IActionResult Delete(string book)
+        {
+            _database.ListRemoveAsync(ListKey, book).Wait();
+
+            return RedirectToAction("Index");
         }
 
 
