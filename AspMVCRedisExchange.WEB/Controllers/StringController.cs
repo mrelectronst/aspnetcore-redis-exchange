@@ -1,22 +1,12 @@
 ﻿using AspMVCRedisExchange.WEB.Services;
 using Microsoft.AspNetCore.Mvc;
-using StackExchange.Redis;
 
 namespace AspMVCRedisExchange.WEB.Controllers
 {
-    public class StringController : Controller
+    public class StringController : BaseController
     {
-        private readonly RedisService _redisService;
-
-        private readonly IDatabase _database;
-
-        public StringController(RedisService redisService)
+        public StringController(RedisService redisService) : base(redisService)
         {
-            _redisService = redisService;
-
-            _redisService.Connect();
-
-            _database = _redisService.GetDatabase(0);
         }
 
         public IActionResult Index()
