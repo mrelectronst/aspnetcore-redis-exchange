@@ -21,7 +21,7 @@ namespace AspMVCRedisExchange.WEB.Controllers
 
         public IActionResult Index()
         {
-            _database.StringSet("name", "fth");
+            _database.StringSet("name", "fth krm mvi mry");
 
             _database.StringSet("age", "10");
 
@@ -31,9 +31,19 @@ namespace AspMVCRedisExchange.WEB.Controllers
 
         public IActionResult ShowString()
         {
-            _database.StringIncrement("age");
+            _database.StringIncrement("age", 5);
 
-            ViewBag.Name = _database.StringGet("age");
+            _database.StringDecrement("age", 2);
+
+            //var age = _database.StringDecrementAsync("age", 1).Result;
+
+            _database.StringDecrementAsync("age", 5).Wait();
+
+            //ViewBag.Age = _database.StringGet("age");
+
+            ViewBag.Name = _database.StringGetRangeAsync("name", 3, 6).Result;
+
+            ViewBag.NameLenght = _database.StringLengthAsync("name").Result;
 
 
             return View();
